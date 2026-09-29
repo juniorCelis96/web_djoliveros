@@ -1,0 +1,214 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, 'Times New Roman', serif;
+
+  --color-navy-50: #f1f4f9;
+  --color-navy-100: #dde5f0;
+  --color-navy-200: #bccbe0;
+  --color-navy-300: #8fa6c7;
+  --color-navy-400: #5f7ea8;
+  --color-navy-500: #3f5f8c;
+  --color-navy-600: #2e4a72;
+  --color-navy-700: #223a5c;
+  --color-navy-800: #182b46;
+  --color-navy-900: #0f1d33;
+  --color-navy-950: #0a1426;
+
+  --color-gold-50: #fbf7ec;
+  --color-gold-100: #f5ecd0;
+  --color-gold-200: #ebd8a1;
+  --color-gold-300: #dfc06d;
+  --color-gold-400: #d2a94a;
+  --color-gold-500: #bf9138;
+  --color-gold-600: #a3742d;
+  --color-gold-700: #835727;
+
+  --color-ivory-50: #fcfbf8;
+  --color-ivory-100: #f7f4ee;
+  --color-ivory-200: #eee9df;
+  --color-ivory-300: #e2dace;
+
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-contrast: var(--primary-contrast);
+}
+
+:root {
+  color-scheme: light;
+  --canvas: #f8f6f1;
+  --surface: #ffffff;
+  --surface-muted: #f1ede4;
+  --ink: #0f1d33;
+  --ink-muted: #45536a;
+  --ink-subtle: #6b778a;
+  --line: #e3dccf;
+  --accent: #8f6726;
+  --primary: #0f1d33;
+  --primary-hover: #182b46;
+  --primary-contrast: #ffffff;
+}
+
+.dark {
+  color-scheme: dark;
+  --canvas: #0a1426;
+  --surface: #0f1d33;
+  --surface-muted: #13243d;
+  --ink: #eef2f7;
+  --ink-muted: #aab6c8;
+  --ink-subtle: #8494aa;
+  --line: #1f3252;
+  --accent: #d2a94a;
+  --primary: #d2a94a;
+  --primary-hover: #dfc06d;
+  --primary-contrast: #0a1426;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif tracking-tight text-ink;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--accent) 28%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-xs font-semibold tracking-[0.22em] text-accent uppercase;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-8 bg-current;
+  }
+
+  .btn-primary,
+  .btn-gold,
+  .btn-outline,
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold transition-all duration-200 disabled:pointer-events-none disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-contrast shadow-sm hover:bg-primary-hover hover:shadow-md;
+  }
+
+  .btn-gold {
+    @apply bg-gold-400 text-navy-950 shadow-sm hover:bg-gold-300 hover:shadow-md;
+  }
+
+  .btn-outline {
+    @apply border border-line bg-transparent text-ink hover:border-accent hover:text-accent;
+  }
+
+  .btn-outline-light {
+    @apply border border-white/25 text-white hover:border-gold-300 hover:text-gold-300;
+  }
+
+  .card {
+    @apply rounded-xl border border-line bg-surface shadow-[0_1px_2px_rgba(15,29,51,0.04)];
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_18px_40px_-18px_rgba(15,29,51,0.35)];
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+
+  .field {
+    @apply block w-full rounded-md border border-line bg-surface px-3.5 py-2.5 text-sm text-ink shadow-sm transition placeholder:text-ink-subtle focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none aria-[invalid=true]:border-red-500 aria-[invalid=true]:ring-red-500/15;
+  }
+
+  .field-error {
+    @apply mt-1.5 text-xs font-medium text-red-600 dark:text-red-400;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-2.5 py-0.5 text-[0.7rem] font-semibold tracking-wide text-accent uppercase;
+  }
+
+  .prose-essay {
+    --tw-prose-body: var(--ink-muted);
+    --tw-prose-headings: var(--ink);
+    --tw-prose-links: var(--accent);
+    --tw-prose-bold: var(--ink);
+    --tw-prose-quotes: var(--ink);
+    --tw-prose-quote-borders: var(--accent);
+    --tw-prose-bullets: var(--accent);
+    --tw-prose-counters: var(--accent);
+    --tw-prose-hr: var(--line);
+  }
+
+  .prose-essay h2 {
+    @apply mt-12 scroll-mt-28 font-serif text-2xl;
+  }
+}

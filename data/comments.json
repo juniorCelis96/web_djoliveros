@@ -1,0 +1,30 @@
+[
+  {
+    "id": "seed-1",
+    "essaySlug": "regulacion-del-cabildeo-en-colombia",
+    "authorName": "María Fernanda Ríos",
+    "body": "Muy pertinente el análisis. El registro público de cabilderos debería ser el primer paso; sin información, el control ciudadano es imposible.",
+    "createdAt": "2024-05-22T14:10:00.000Z"
+  },
+  {
+    "id": "seed-2",
+    "essaySlug": "regulacion-del-cabildeo-en-colombia",
+    "authorName": "Andrés Castaño",
+    "body": "Coincido en que regular no es prohibir. Sería interesante comparar con la experiencia de Chile y su Ley del Lobby.",
+    "createdAt": "2024-05-23T09:45:00.000Z"
+  },
+  {
+    "id": "seed-3",
+    "essaySlug": "control-politico-en-colombia",
+    "authorName": "Laura Méndez",
+    "body": "La falta de equipos técnicos en los concejos es un problema real. En muchos municipios los debates de control se preparan sin información suficiente.",
+    "createdAt": "2024-05-15T18:20:00.000Z"
+  },
+  {
+    "id": "seed-4",
+    "essaySlug": "descentralizacion-y-desarrollo-territorial",
+    "authorName": "Carlos Arbeláez",
+    "body": "Excelente mirada desde el Magdalena Medio. Los esquemas asociativos entre municipios son una salida que se ha explorado poco.",
+    "createdAt": "2024-05-08T11:05:00.000Z"
+  }
+]
